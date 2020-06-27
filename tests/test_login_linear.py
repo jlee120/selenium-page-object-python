@@ -1,5 +1,3 @@
-import time
-
 from selenium import webdriver
 import unittest, os
 from selenium.webdriver.common.by import By
