@@ -1,24 +1,25 @@
 from selenium.webdriver.common.by import By
+from locators.locators import Locators as loc
+from pages.base_page import BasePage
 
-
-class LoginPage:
+class LoginPage(BasePage):
 
     def __init__(self, driver):
-        self.driver = driver
-        self.username_textfield = (By.ID, 'txtUsername')
-        self.password_text_field = (By.ID, 'txtPassword')
-        self.login_button = (By.ID, 'btnLogin')
+        super().__init__(driver)
+        self.username_textfield = (By.ID, loc.username_textfield_id)
+        self.password_textfield = (By.ID, loc.password_textfield_id)
+        self.login_button = (By.ID, loc.login_button_id)
 
     def enter_username(self, username):
-        self.driver.find_element(self.username_textfield, username)
+        super().enter_text(self.username_textfield, username)
 
     def enter_password(self, password):
-        self.driver.find_element(self.password_text_field, password)
+        super().enter_text(self.password_textfield, password)
 
     def click_login(self):
-        self.driver.find_element(self.login_button).click()
+        super().click(self.login_button)
 
-    def login_as_admin(self, username, password):
+    def login(self, username, password):
         self.enter_username(username)
         self.enter_password(password)
         self.click_login()
